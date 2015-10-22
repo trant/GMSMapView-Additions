@@ -17,22 +17,19 @@
         if([[[object class] description] isEqualToString:@"GMSUISettingsView"] )
         {
             for(UIView *view in object.subviews) {
-                if([[[view class] description] isEqualToString:@"UIButton"] ) {
+                if([[[view class] description] isEqualToString:@"GMSx_QTMButton"] ) {
                     [buttons addObject:view];
                 }
             }
         }
     };
     
-    if (buttons.count == 2) {
-        UIButton *button_1 = [buttons objectAtIndex:0];
-        UIButton *button_2 = [buttons objectAtIndex:1];
-        
-        return button_1.frameHeight > button_2.frameHeight ? button_1 : button_2;
-    } else {
+    if (buttons.count == 0) {
         NSLog(@"UPDATING GOOGLE MAPS MIGHT HAVE BROKEN THE LOCATION BUTTON. CHECK IF IT HAS THE CORRECT IMAGE ON PRESSED STATE!");
         
         return nil;
+    } else {
+        return [buttons firstObject];
     }
 }
 
